@@ -1,38 +1,37 @@
 import Option from "./Option";
 import { useState } from "react";
 
-function QuizCard({ question, options, answer }) {
-  const [selectedOption, setSelectedOption] = useState(null);
-  const [answered, setAnswered] = useState(false);
-  console.log(selectedOption);
-
-  function handleClick(option) {
-    if (!answered) {
-      setSelectedOption(option);
-      setAnswered(true);
-    }
-  }
-
+function QuizCard({
+  questionIndex,
+  question,
+  options,
+  answer,
+  userAns,
+  handleClick,
+}) {
   const optionsList = [];
 
   for (let i = 0; i < 4; i++) {
-    if (answered) {
+    if (userAns != null) {
       optionsList.push(
         <Option
           key={i}
           className={i == answer ? "correct-option" : "wrong-option"}
           text={options[i]}
           handleClick={handleClick}
-          index={i}
+          optionIndex={i}
+          questionIndex={questionIndex}
         />,
       );
     } else {
       optionsList.push(
         <Option
           key={i}
+          className="default-option"
           text={options[i]}
-          index={i}
+          optionIndex={i}
           handleClick={handleClick}
+          questionIndex={questionIndex}
         />,
       );
     }

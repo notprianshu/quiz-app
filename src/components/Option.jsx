@@ -1,7 +1,10 @@
-function Option({ text, className = null, handleClick, index }) {
+function Option({ text, className, handleClick, optionIndex, questionIndex }) {
   return (
     <>
-      <button className={className} onClick={() => handleClick(index)}>
+      <button
+        className={className}
+        onClick={() => handleClick(questionIndex, optionIndex)}
+      >
         {text}
       </button>
     </>
